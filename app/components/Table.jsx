@@ -1,9 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { BiEdit, BiTrashAlt } from "react-icons/bi";
-import data from "../database/data.json";
+// import data from "../database/data.json";
 
-export default function Table() {
+const BASE_URL = "http://localhost:3000";
+
+async function getUsers() {
+  let res = await fetch(`${BASE_URL}/api/users`);
+  return res.json();
+}
+
+export default async function Table() {
+  let { users } = await getUsers();
   return (
     <table className="min-w-full table-auto">
       <thead>
@@ -29,9 +37,44 @@ export default function Table() {
         </tr>
       </thead>
       <tbody className="bg-gray-200">
-        {data.map((object, index) => (
-          <Tr {...object} key={index} />
-        ))}
+        {users.map((user, i) => {
+          return (
+            <tr className="bg-gray-50 text-center items-center" key={i}>
+              <td className="px-16 py-2 flex flex-row items-center ">
+                <img src={user.avatar || "#"} alt="" width={24} height={24} />
+                <span className="text-center  font-semibold ml-2">
+                  {user.name || "unknown"}
+                </span>
+              </td>
+              <td className="px-16 py-2">
+                <span>{user.email || "unknown"}</span>
+              </td>
+              <td className="px-16 py-2">
+                <span>{user.salary || "unknown"}</span>
+              </td>
+              <td className="px-16 py-2">
+                <span>{user.date || "unknown"}</span>
+              </td>
+              <td className="px-16 py-2">
+                <button className="cursor">
+                  <span className="bg-green-500 text-white px-5 py-1 rounded-full">
+                    {user.status || "unknown"}
+                  </span>
+                </button>
+              </td>
+              <td className="px-16   ">
+                <div className="flex justify-around gap-5">
+                  <button className="cursor">
+                    <BiEdit size={25} color={"rgb(34,197,94)"}></BiEdit>
+                  </button>
+                  <button className="cursor">
+                    <BiTrashAlt size={25} color={"rgb(244,63,94)"}></BiTrashAlt>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );
