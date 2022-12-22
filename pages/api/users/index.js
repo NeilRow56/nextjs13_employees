@@ -1,6 +1,7 @@
 import dbConnect from "../../../app/lib/dbConnect";
 import {
   getUsers,
+  postUser,
   putUser,
   deleteUser,
 } from "../../../app/controllers/controller";

@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Providers } from "./components/Provider";
+import ReactQueryWrapper from "../app/ReactQueryWrapper";
 
 export default function RootLayout({ children }) {
   return (
@@ -11,7 +12,9 @@ export default function RootLayout({ children }) {
       <head />
 
       <body>
-        <Providers>{children}</Providers>
+        <ReactQueryWrapper>
+          <Providers>{children}</Providers>
+        </ReactQueryWrapper>
       </body>
     </html>
   );
