@@ -1,11 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { getUsers } from "../lib/helper";
-import { BiEdit, BiTrashAlt } from "react-icons/bi";
+// import { BiEdit, BiTrashAlt } from "react-icons/bi";
+// import { useSelector } from "react-redux";
+import UpdateDelete from "./UpdateDelete";
 
 export default async function Table() {
   let { users } = await getUsers();
-
   return (
     <table className="min-w-full table-auto">
       <thead>
@@ -112,14 +113,7 @@ function Tr({ id, name, avatar, email, salary, date, status }) {
         </button>
       </td>
       <td className="px-16   ">
-        <div className="flex justify-around gap-5">
-          <button className="cursor">
-            <BiEdit size={25} color={"rgb(34,197,94)"}></BiEdit>
-          </button>
-          <button className="cursor">
-            <BiTrashAlt size={25} color={"rgb(244,63,94)"}></BiTrashAlt>
-          </button>
-        </div>
+        <UpdateDelete />
       </td>
     </tr>
   );

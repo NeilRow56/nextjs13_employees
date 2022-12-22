@@ -1,13 +1,13 @@
 import React, { Suspense } from "react";
-import ClientComponent from "./components/Clientcomponent";
+import ClientForm from "./components/ClientForm";
+// import ClientTable from "./components/ClientTable";
 import Table from "./components/Table";
 
 const HomePage = () => {
   return (
     <>
-      <ClientComponent>
-        <Table />
-      </ClientComponent>
+      <ClientForm></ClientForm>
+      <Table />
     </>
   );
 };
