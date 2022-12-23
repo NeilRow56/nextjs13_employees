@@ -4,7 +4,7 @@ import React, { useReducer } from "react";
 import { BiPlus } from "react-icons/bi";
 import Success from "./Success";
 import Bug from "./Bug";
-import { useQueryClient, useMutation } from "react-query";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { addUser, getUsers } from "../lib/helper";
 
 const formReducer = (state, event) => {
@@ -20,7 +20,7 @@ export default function AddUserForm() {
 
   const addMutation = useMutation(addUser, {
     onSuccess: () => {
-      queryClient.prefetchQuery("users", getUsers);
+      queryClient.prefetchQuery(["users"], getUsers);
     },
   });
 
