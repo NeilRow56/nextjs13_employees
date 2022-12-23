@@ -1,14 +1,15 @@
 "use client";
 import { BiUserPlus } from "react-icons/bi";
 import Form from "../components/Form";
-
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleChangeAction } from "../redux/reducer";
 
 export default function FormHolder() {
-  const [visible, setVisible] = useState(false);
+  const visible = useSelector((state) => state.app.client.toggleForm);
+  const dispatch = useDispatch();
 
   const handler = () => {
-    setVisible(!visible);
+    dispatch(toggleChangeAction);
   };
 
   return (
